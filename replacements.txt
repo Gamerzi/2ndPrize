@@ -1,0 +1,2 @@
+regex:AC[A-Za-z0-9]{32}==>REMOVED
+regex:hf_[A-Za-z0-9]{40}==>REMOVED

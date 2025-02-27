@@ -14,7 +14,7 @@ env_vars = dotenv_values(".env")
 # Retrieve specific environment variables for username, assistant name, and API key.
 Username = "Baqer Ali"
 Assistantname = "Jarvis"
-GroqAPIKey = "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"
+GroqAPIKey = ""
 
 # Initialize the Groq client using the provided API key.
 client = Groq(api_key=GroqAPIKey)
