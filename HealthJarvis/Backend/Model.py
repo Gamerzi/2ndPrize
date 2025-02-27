@@ -4,7 +4,7 @@ from dotenv import dotenv_values
 
 env_vars = dotenv_values(".env")
 
-CohereApiKey = "JPfft3zsI8CwD2rSVkzaKkIFSChBqYs5tqy4NLFo"
+CohereApiKey = ""
 co = cohere.Client(api_key=CohereApiKey)
 
 # Command list includes additional commands.

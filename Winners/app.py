@@ -116,7 +116,7 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 # Add this after your imports
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './config/nomadic-entry-451513-q4-c65ad06a6e7c.json'
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = ''
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

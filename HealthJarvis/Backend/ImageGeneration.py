@@ -26,7 +26,7 @@ def open_images(prompt):
 
 API_URL = "https://api-inference.huggingface.co/models/stabilityai/stable-diffusion-xl-base-1.0"
 # Hard coded Hugging Face API key (replace with your actual API key)
-HUGGING_FACE_API_KEY = "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"
+HUGGING_FACE_API_KEY = ""
 headers = {"Authorization": f"Bearer {HUGGING_FACE_API_KEY}"}
 
 # Async function to send a query to the Hugging Face API
