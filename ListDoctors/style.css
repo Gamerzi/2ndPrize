@@ -1,0 +1,141 @@
+/* 
+  Keyframes for a slight fade-in-up effect 
+  (cards will fade in and rise a bit).
+*/
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Basic resets */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Page background with a soft blue gradient */
+  body {
+    background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+    min-height: 100vh;
+    padding: 20px;
+  }
+  
+  /* Header styling */
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  header h1 {
+    font-size: 2.5rem;
+    color: #0d47a1;
+    display: inline-block;
+    margin: 0;
+  }
+  header h1 i {
+    margin-right: 10px;
+    color: #1976d2; /* color for the medical icon */
+  }
+  
+  /* Doctor list container: 3 columns in a grid */
+  .doctor-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto; /* center the grid */
+  }
+  
+  /* Each doctor card */
+  .doctor-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+    /* 
+      Fade in and slide up effect 
+      plus a small delay based on card order 
+    */
+    opacity: 0; 
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  .doctor-card:nth-child(1) { animation-delay: 0.1s; }
+  .doctor-card:nth-child(2) { animation-delay: 0.2s; }
+  .doctor-card:nth-child(3) { animation-delay: 0.3s; }
+  .doctor-card:nth-child(4) { animation-delay: 0.4s; }
+  .doctor-card:nth-child(5) { animation-delay: 0.5s; }
+  .doctor-card:nth-child(6) { animation-delay: 0.6s; }
+  
+  /* Card hover effect: slight lift and shadow */
+  .doctor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Doctor photo */
+  .doctor-photo {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+  
+  /* Doctor info section */
+  .doctor-info {
+    padding: 15px;
+    min-height: 200px; /* helps keep cards uniform in height */
+  }
+  .doctor-info h2 {
+    font-size: 1.4rem;
+    color: #0d47a1;
+    margin-bottom: 10px;
+  }
+  .doctor-info p {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    color: #555;
+    line-height: 1.4em;
+  }
+  
+  /* Action buttons container */
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Styling buttons */
+  .action-buttons button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #1976d2;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .action-buttons button:hover {
+    background-color: #0d47a1;
+  }
+  
+  /* Responsive design: stack to 1 or 2 columns for smaller screens */
+  @media screen and (max-width: 992px) {
+    .doctor-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .doctor-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  

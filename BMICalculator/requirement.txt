@@ -1,0 +1,11 @@
+streamlit
+phidata
+python-dotenv
+python-docx
+requests
+pydantic
+Pillow
+
+from phi.agent import Agent, RunResponse
+# Import the expected base model class from phi (adjust the import if needed)
+from phi.model.base import Model as PhiModel

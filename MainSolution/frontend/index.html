@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Automated Medicine Scheduler</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Google Cloud Vision is now used on the backend so Tesseract.js is removed -->
+</head>
+<body>
+  <div class="container">
+    <h1>Automated Medicine Scheduler</h1>
+    <!-- Upload Prescription Image -->
+    <section id="upload-section">
+      <h2>Upload Prescription Image</h2>
+      <input type="file" id="prescription-input" accept="image/*" />
+      <button id="extract-btn">Extract Prescription</button>
+      <div id="extracted-text"></div>
+    </section>
+
+    <!-- Processing Message -->
+    <section id="processing-section" class="hidden">
+      <h2>Processing Prescription...</h2>
+      <p>Please wait while we extract medicine details.</p>
+    </section>
+
+    <!-- Medicine Schedule Display -->
+    <section id="schedule-section" class="hidden">
+      <h2>Medicine Schedule</h2>
+      <div id="medicine-list"></div>
+    </section>
+    
+    <!-- AI Summary Display -->
+    <section id="summary-section" class="hidden">
+      <h2>Full AI Response</h2>
+      <pre id="ai-summary"></pre>
+    </section>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

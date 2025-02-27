@@ -1,0 +1,100 @@
+Date: 19/2/2025
+Time: 23:15
+Phone Number: +91 7207581690
+Message: Test
+--------------------
+Date: 19/2/2025
+Time: 23:18
+Phone Number: +91 7207581690
+Message: Test
+--------------------
+Date: 19/2/2025
+Time: 23:19
+Phone Number: +91 7207581690
+Message: I need to get the hospital now
+--------------------
+Date: 19/2/2025
+Time: 23:32
+Phone Number: +91 7207581690
+Message: I need to get the hospital now
+--------------------
+Date: 19/2/2025
+Time: 23:32
+Phone Number: +91 7207581690
+Message: I need to get the hospital now
+--------------------
+Date: 19/2/2025
+Time: 23:35
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+
+
+
+
+
+baqerali621@gmail.com
+QWERTY123@#&12
+
+EMAIL_ADDRESS = 'baqerali621@gmail.com'
+EMAIL_PASSWORD = 'QWERTY123@#&12'
+TARGET_EMAIL = 'rrsed456@gmail.com'Date: 20/2/2025
+Time: 13:36
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 13:42
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 13:48
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 13:51
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 13:56
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 14:10
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 14:43
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 14:51
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 14:52
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 14:53
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 17:40
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------
+Date: 20/2/2025
+Time: 17:41
+Phone Number: +917207581690
+Message: I need to get the hospital now
+--------------------

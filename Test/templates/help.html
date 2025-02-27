@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Help On the Way</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header {
+      background-color: #1a56db;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav ul li {
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    nav ul li:hover {
+      color: #93c5fd;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      margin-bottom: -4rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    footer {
+      background-color: #f1f5f9;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      color: #64748b;
+    }
+    
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+      
+      .hero {
+        padding: 6rem 1rem 4rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-content">
+        <a href="#" class="logo">Company</a>
+        <nav>
+          <ul>
+            <li>About</li>
+            <li>Products</li>
+            <li>Services</li>
+            <li>Contacts</li>
+            <li>Login</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    
+    <div class="hero">
+      <h1>Help is on the Way</h1>
+      <p>Your request has been received and assistance will be provided shortly.</p>
+    </div>
+    
+    <div class="container">
+      <div class="card">
+        <p>Please wait, help is coming soon!</p>
+      </div>
+    </div>
+    
+    <footer>
+      &copy; 2025 Company. All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>

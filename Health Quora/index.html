@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blue Quora-Like Page</title>
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-Fo3rlrZj/k7ujTnHq6WVOs0ZLlJ21f5BWA5elwKGL7GQ3WxdMG5o+LOk2jQWZjgXH8k4sN1HyFJBkWu38Gkq6A=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    /* Global Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+    }
+    /* Header / Navbar */
+    header {
+      background-color: #1976d2;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-right: 20px;
+    }
+    .search-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-right: 20px;
+    }
+    .search-bar input {
+      border: none;
+      padding: 8px;
+      width: 100%;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search-bar button {
+      background-color: transparent;
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      color: #1976d2;
+    }
+    .nav-icons i {
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    /* Main Container */
+    .container {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+      width: 95%;
+      max-width: 1200px;
+    }
+    /* Left Sidebar */
+    .left-sidebar {
+      flex: 1;
+      max-width: 220px;
+      margin-right: 20px;
+    }
+    .left-sidebar .sidebar-box {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .left-sidebar .sidebar-box h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .left-sidebar .sidebar-box ul {
+      list-style: none;
+    }
+    .left-sidebar .sidebar-box li {
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    /* Feed */
+    .feed {
+      flex: 3;
+      min-width: 0;
+    }
+    /* Ask Box */
+    .ask-box {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ask-box img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .ask-box input {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 10px;
+      outline: none;
+    }
+    .ask-box button {
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    /* Post Card */
+    .post-card {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .post-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+      object-fit: cover;
+    }
+    .post-header .user-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .post-header .user-info .username {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    .post-header .user-info .user-desc {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    /* Post Details (flex container) */
+    .post-details {
+      margin-bottom: 10px;
+    }
+    .post-content {
+      display: flex;
+      justify-content: space-between; /* push text left, image right */
+      align-items: flex-start;
+      gap: 20px; /* space between text and image */
+    }
+    .post-text {
+      flex: 1; /* text area can expand */
+      font-size: 0.95rem;
+      color: #333;
+    }
+    .post-text .post-question {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .post-img {
+      width: 220px;
+      max-width: 40%; /* prevents image from growing too large */
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .post-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 10px;
+    }
+    .post-actions button {
+      background-color: transparent;
+      border: none;
+      font-size: 0.9rem;
+      color: #555;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .post-actions button i {
+      margin-right: 6px;
+      font-size: 1rem;
+    }
+    .post-actions button:hover {
+      color: #1976d2;
+    }
+    /* Comment Section & Form */
+    .comment-section {
+      margin-top: 10px;
+      padding-left: 10px;
+      border-left: 2px solid #eee;
+    }
+    .comment {
+      margin: 10px 0;
+    }
+    .comment .comment-user {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .comment .comment-text {
+      font-size: 0.95rem;
+    }
+    .comment-form {
+      display: none;
+      margin-top: 10px;
+      gap: 5px;
+    }
+    .comment-form input {
+      flex: 1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .comment-form button {
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    /* Right Sidebar */
+    .right-sidebar {
+      flex: 1;
+      max-width: 220px;
+      margin-left: 20px;
+    }
+    .right-sidebar .sidebar-box {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+    .right-sidebar .sidebar-box h3 {
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .trending-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 10px;
+    }
+    .trending-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    .trending-list img.trend-image {
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
+      object-fit: cover;
+      margin-top: 2px;
+    }
+    .trend-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .trend-info .trend-title {
+      font-weight: 600;
+    }
+    .trend-info .trend-desc {
+      font-size: 0.8rem;
+      color: #777;
+    }
+    .add-trending-form {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .add-trending-form input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .add-trending-form button {
+      background-color: #1976d2;
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header>
+    <div class="logo">BlueQuora</div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search Quora-like..." />
+      <button><i class="fas fa-search"></i></button>
+    </div>
+    <div class="nav-icons">
+      <i class="fas fa-home"></i>
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-user-circle"></i>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Left Sidebar: Topics -->
+    <div class="left-sidebar">
+      <div class="sidebar-box">
+        <h3>Topics</h3>
+        <ul>
+          <li>Technology</li>
+          <li>Travel</li>
+          <li>Health</li>
+          <li>Education</li>
+          <li>Science</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Feed Section -->
+    <div class="feed">
+      <!-- "Ask" Box with Query Input -->
+      <div class="ask-box">
+        <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="profile" />
+        <input type="text" placeholder="What is your question or link?" id="queryInput" />
+        <button id="postQueryBtn">Post Query</button>
+      </div>
+
+      <!-- Hard-Coded Posts -->
+      <!-- Post 1 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="profile" />
+          <div class="user-info">
+            <span class="username">Jane Doe</span>
+            <span class="user-desc">Traveler at Zazzle (2011–present)</span>
+          </div>
+        </div>
+        <div class="post-details">
+          <!-- Flex container for text left, image right -->
+          <div class="post-content">
+            <div class="post-text">
+              <div class="post-question">What are the best travel hacks?</div>
+              1. Never pay for water at the airport!<br />
+              2. Carry a portable charger.
+            </div>
+            <img
+              src="https://cdn.pixabay.com/photo/2017/06/28/09/26/airport-2443592_1280.jpg"
+              alt="Travel"
+              class="post-img"
+            />
+          </div>
+        </div>
+        <div class="post-actions">
+          <button class="like-btn" data-like-count="0">
+            <i class="far fa-thumbs-up"></i> Like (<span class="like-count">0</span>)
+          </button>
+          <button class="toggle-comment-btn">
+            <i class="far fa-comment"></i> Comment
+          </button>
+          <button>
+            <i class="fas fa-share"></i> Share
+          </button>
+        </div>
+        <div class="comment-form">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="submit-comment-btn">Submit</button>
+        </div>
+        <div class="comment-section">
+          <div class="comment">
+            <div class="comment-user">Michael:</div>
+            <div class="comment-text">I always bring my own snacks!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 2 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/men/20.jpg" alt="profile" />
+          <div class="user-info">
+            <span class="username">John Smith</span>
+            <span class="user-desc">Mechanical Engineer</span>
+          </div>
+        </div>
+        <div class="post-details">
+          <div class="post-content">
+            <div class="post-text">
+              <div class="post-question">
+                What is the biggest culture shock you have ever faced?
+              </div>
+              Sharing my experience living abroad. The difference in daily customs
+              and social norms was fascinating!
+            </div>
+            <img
+              src="https://cdn.pixabay.com/photo/2016/11/19/14/00/globe-1833198_1280.jpg"
+              alt="Culture Shock"
+              class="post-img"
+            />
+          </div>
+        </div>
+        <div class="post-actions">
+          <button class="like-btn" data-like-count="0">
+            <i class="far fa-thumbs-up"></i> Like (<span class="like-count">0</span>)
+          </button>
+          <button class="toggle-comment-btn">
+            <i class="far fa-comment"></i> Comment
+          </button>
+          <button>
+            <i class="fas fa-share"></i> Share
+          </button>
+        </div>
+        <div class="comment-form">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="submit-comment-btn">Submit</button>
+        </div>
+        <div class="comment-section">
+          <div class="comment">
+            <div class="comment-user">Ava:</div>
+            <div class="comment-text">I experienced this when I studied abroad!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 3 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/men/55.jpg" alt="profile" />
+          <div class="user-info">
+            <span class="username">Alex Brown</span>
+            <span class="user-desc">Photographer</span>
+          </div>
+        </div>
+        <div class="post-details">
+          <div class="post-content">
+            <div class="post-text">
+              <div class="post-question">
+                How do I capture the perfect sunset photo?
+              </div>
+              Looking for tips on lighting, composition, and camera settings.
+            </div>
+            <img
+              src="https://cdn.pixabay.com/photo/2016/10/23/11/57/sunset-1766215_1280.jpg"
+              alt="Sunset Photo"
+              class="post-img"
+            />
+          </div>
+        </div>
+        <div class="post-actions">
+          <button class="like-btn" data-like-count="0">
+            <i class="far fa-thumbs-up"></i> Like (<span class="like-count">0</span>)
+          </button>
+          <button class="toggle-comment-btn">
+            <i class="far fa-comment"></i> Comment
+          </button>
+          <button>
+            <i class="fas fa-share"></i> Share
+          </button>
+        </div>
+        <div class="comment-form">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="submit-comment-btn">Submit</button>
+        </div>
+        <div class="comment-section">
+          <div class="comment">
+            <div class="comment-user">Sam:</div>
+            <div class="comment-text">Try using a neutral density filter!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 4 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/women/30.jpg" alt="profile" />
+          <div class="user-info">
+            <span class="username">Emily Clark</span>
+            <span class="user-desc">Food Blogger</span>
+          </div>
+        </div>
+        <div class="post-details">
+          <div class="post-content">
+            <div class="post-text">
+              <div class="post-question">
+                What are some quick and healthy meal ideas?
+              </div>
+              Need recipes that are both nutritious and easy to prepare.
+            </div>
+            <img
+              src="https://cdn.pixabay.com/photo/2016/03/05/19/02/salad-1238243_1280.jpg"
+              alt="Healthy Meal"
+              class="post-img"
+            />
+          </div>
+        </div>
+        <div class="post-actions">
+          <button class="like-btn" data-like-count="0">
+            <i class="far fa-thumbs-up"></i> Like (<span class="like-count">0</span>)
+          </button>
+          <button class="toggle-comment-btn">
+            <i class="far fa-comment"></i> Comment
+          </button>
+          <button>
+            <i class="fas fa-share"></i> Share
+          </button>
+        </div>
+        <div class="comment-form">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="submit-comment-btn">Submit</button>
+        </div>
+        <div class="comment-section">
+          <div class="comment">
+            <div class="comment-user">Liam:</div>
+            <div class="comment-text">Try a quinoa salad with mixed veggies!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Post 5 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://randomuser.me/api/portraits/men/80.jpg" alt="profile" />
+          <div class="user-info">
+            <span class="username">Chris Green</span>
+            <span class="user-desc">Tech Enthusiast</span>
+          </div>
+        </div>
+        <div class="post-details">
+          <div class="post-content">
+            <div class="post-text">
+              <div class="post-question">
+                What are the latest trends in artificial intelligence?
+              </div>
+              I'm curious about breakthroughs in machine learning and robotics.
+            </div>
+            <img
+              src="https://cdn.pixabay.com/photo/2020/04/22/09/55/artificial-intelligence-5078132_1280.jpg"
+              alt="AI"
+              class="post-img"
+            />
+          </div>
+        </div>
+        <div class="post-actions">
+          <button class="like-btn" data-like-count="0">
+            <i class="far fa-thumbs-up"></i> Like (<span class="like-count">0</span>)
+          </button>
+          <button class="toggle-comment-btn">
+            <i class="far fa-comment"></i> Comment
+          </button>
+          <button>
+            <i class="fas fa-share"></i> Share
+          </button>
+        </div>
+        <div class="comment-form">
+          <input type="text" placeholder="Add a comment..." />
+          <button class="submit-comment-btn">Submit</button>
+        </div>
+        <div class="comment-section">
+          <div class="comment">
+            <div class="comment-user">Jordan:</div>
+            <div class="comment-text">AI is revolutionizing healthcare!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar: Trending -->
+    <div class="right-sidebar">
+      <div class="sidebar-box">
+        <h3>Trending</h3>
+        <ul class="trending-list" id="trendingList">
+          <li>
+            <img
+              src="https://cdn.pixabay.com/photo/2017/01/31/15/13/office-2027762_1280.png"
+              alt="Remote Work"
+              class="trend-image"
+            />
+            <div class="trend-info">
+              <span class="trend-title">Remote Work</span>
+              <span class="trend-desc">The rise of working from anywhere</span>
+            </div>
+          </li>
+          <li>
+            <img
+              src="https://cdn.pixabay.com/photo/2020/04/22/09/55/artificial-intelligence-5078132_1280.jpg"
+              alt="AI Innovations"
+              class="trend-image"
+            />
+            <div class="trend-info">
+              <span class="trend-title">AI Innovations</span>
+              <span class="trend-desc">Cutting-edge breakthroughs in ML & robotics</span>
+            </div>
+          </li>
+          <li>
+            <img
+              src="https://cdn.pixabay.com/photo/2017/08/06/06/50/healthy-food-2598571_1280.jpg"
+              alt="Healthy Eating"
+              class="trend-image"
+            />
+            <div class="trend-info">
+              <span class="trend-title">Healthy Eating</span>
+              <span class="trend-desc">Focus on balanced, nutritious diets</span>
+            </div>
+          </li>
+          <li>
+            <img
+              src="https://cdn.pixabay.com/photo/2017/03/27/14/56/technology-2174487_1280.jpg"
+              alt="Tech Trends"
+              class="trend-image"
+            />
+            <div class="trend-info">
+              <span class="trend-title">Tech Trends</span>
+              <span class="trend-desc">Emerging software & hardware solutions</span>
+            </div>
+          </li>
+          <li>
+            <img
+              src="https://cdn.pixabay.com/photo/2016/11/29/10/07/social-media-1869828_1280.jpg"
+              alt="Social Media"
+              class="trend-image"
+            />
+            <div class="trend-info">
+              <span class="trend-title">Social Media</span>
+              <span class="trend-desc">Platforms shaping modern communication</span>
+            </div>
+          </li>
+        </ul>
+        <!-- Add New Trending Item (Optional) -->
+        <div class="add-trending-form">
+          <input type="text" id="trendTopicInput" placeholder="Add a topic..." />
+          <input type="text" id="trendImageInput" placeholder="Image URL..." />
+          <button id="addTrendingBtn">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to create a new post dynamically (text only)
+    function createPost(text) {
+      const postCard = document.createElement("div");
+      postCard.className = "post-card";
+
+      // Post header
+      const postHeader = document.createElement("div");
+      postHeader.className = "post-header";
+      const userImg = document.createElement("img");
+      userImg.src = "https://randomuser.me/api/portraits/men/46.jpg"; // default user
+      userImg.alt = "profile";
+      const userInfo = document.createElement("div");
+      userInfo.className = "user-info";
+      const usernameSpan = document.createElement("span");
+      usernameSpan.className = "username";
+      usernameSpan.textContent = "You";
+      const userDescSpan = document.createElement("span");
+      userDescSpan.className = "user-desc";
+      userDescSpan.textContent = "New User";
+      userInfo.append(usernameSpan, userDescSpan);
+      postHeader.append(userImg, userInfo);
+
+      // Post details (flex container)
+      const postDetails = document.createElement("div");
+      postDetails.className = "post-details";
+      const postContent = document.createElement("div");
+      postContent.className = "post-content";
+
+      // Text portion on the left
+      const postText = document.createElement("div");
+      postText.className = "post-text";
+      const postQuestion = document.createElement("div");
+      postQuestion.className = "post-question";
+      postQuestion.textContent = text;
+      postText.appendChild(postQuestion);
+
+      // We won't include an image for user-created posts unless you want a placeholder
+      // Just create an empty <img> or remove it entirely
+      const postImg = document.createElement("img");
+      postImg.className = "post-img";
+      postImg.src = "https://via.placeholder.com/220"; // optional placeholder
+      postImg.alt = "User Post Image";
+
+      postContent.append(postText, postImg);
+      postDetails.appendChild(postContent);
+
+      // Post actions
+      const postActions = document.createElement("div");
+      postActions.className = "post-actions";
+      // Like button
+      const likeBtn = document.createElement("button");
+      likeBtn.className = "like-btn";
+      likeBtn.setAttribute("data-like-count", "0");
+      likeBtn.innerHTML = '<i class="far fa-thumbs-up"></i> Like (<span class="like-count">0</span>)';
+      likeBtn.addEventListener("click", () => {
+        let count = parseInt(likeBtn.getAttribute("data-like-count")) || 0;
+        count++;
+        likeBtn.setAttribute("data-like-count", count);
+        likeBtn.querySelector(".like-count").textContent = count;
+      });
+      // Comment toggle button
+      const commentToggleBtn = document.createElement("button");
+      commentToggleBtn.className = "toggle-comment-btn";
+      commentToggleBtn.innerHTML = '<i class="far fa-comment"></i> Comment';
+      // Share button (dummy)
+      const shareBtn = document.createElement("button");
+      shareBtn.innerHTML = '<i class="fas fa-share"></i> Share';
+      shareBtn.addEventListener("click", () => {
+        alert("Share functionality is not implemented.");
+      });
+      postActions.append(likeBtn, commentToggleBtn, shareBtn);
+
+      // Comment form (initially hidden)
+      const commentForm = document.createElement("div");
+      commentForm.className = "comment-form";
+      commentForm.style.display = "none";
+      const commentInput = document.createElement("input");
+      commentInput.type = "text";
+      commentInput.placeholder = "Add a comment...";
+      const commentSubmitBtn = document.createElement("button");
+      commentSubmitBtn.textContent = "Submit";
+      commentSubmitBtn.addEventListener("click", () => {
+        const commentText = commentInput.value.trim();
+        if (commentText !== "") {
+          const commentDiv = document.createElement("div");
+          commentDiv.className = "comment";
+          const commentUser = document.createElement("div");
+          commentUser.className = "comment-user";
+          commentUser.textContent = "You:";
+          const commentContent = document.createElement("div");
+          commentContent.className = "comment-text";
+          commentContent.textContent = commentText;
+          commentDiv.append(commentUser, commentContent);
+          commentSection.appendChild(commentDiv);
+          commentInput.value = "";
+        }
+      });
+      commentForm.append(commentInput, commentSubmitBtn);
+
+      // Toggle comment form when Comment button is clicked
+      commentToggleBtn.addEventListener("click", () => {
+        commentForm.style.display =
+          commentForm.style.display === "none" || commentForm.style.display === ""
+            ? "flex"
+            : "none";
+      });
+
+      // Comment section container
+      const commentSection = document.createElement("div");
+      commentSection.className = "comment-section";
+
+      // Assemble post card
+      postCard.append(postHeader, postDetails, postActions, commentForm, commentSection);
+
+      // Prepend new post to feed
+      const feed = document.querySelector(".feed");
+      feed.insertBefore(postCard, feed.firstChild);
+    }
+
+    // Event listener for posting query from Ask Box
+    document.getElementById("postQueryBtn").addEventListener("click", () => {
+      const queryInput = document.getElementById("queryInput");
+      const text = queryInput.value.trim();
+      if (text !== "") {
+        createPost(text);
+        queryInput.value = "";
+      }
+    });
+
+    // Trending functionality (adding new items dynamically)
+    const addTrendingBtn = document.getElementById("addTrendingBtn");
+    const trendTopicInput = document.getElementById("trendTopicInput");
+    const trendImageInput = document.getElementById("trendImageInput");
+    const trendingList = document.getElementById("trendingList");
+
+    addTrendingBtn.addEventListener("click", () => {
+      const newTopic = trendTopicInput.value.trim();
+      const newImage = trendImageInput.value.trim();
+      if (newTopic) {
+        const li = document.createElement("li");
+        li.style.display = "flex";
+        li.style.alignItems = "flex-start";
+        li.style.gap = "8px";
+        li.style.marginBottom = "12px";
+
+        const img = document.createElement("img");
+        img.className = "trend-image";
+        img.src = newImage || 'https://via.placeholder.com/30';
+        img.alt = 'Topic Image';
+
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "trend-info";
+
+        const topicTitle = document.createElement("span");
+        topicTitle.className = "trend-title";
+        topicTitle.textContent = newTopic;
+
+        // A small description for user-added topics
+        const topicDesc = document.createElement("span");
+        topicDesc.className = "trend-desc";
+        topicDesc.textContent = "User added topic";
+
+        infoDiv.append(topicTitle, topicDesc);
+        li.append(img, infoDiv);
+        trendingList.appendChild(li);
+
+        trendTopicInput.value = "";
+        trendImageInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>

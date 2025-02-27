@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Speech Recognition</title>
+</head>
+<body>
+    <button id="start" onclick="startRecognition()">Start Recognition</button>
+    <button id="end" onclick="stopRecognition()">Stop Recognition</button>
+    <p id="output"></p>
+    <script>
+        // Check if the SpeechRecognition API is supported
+        var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            document.getElementById("output").innerText = "Speech Recognition not supported in this browser.";
+        } else {
+            var recognition = new SpeechRecognition();
+            recognition.lang = 'en';
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = function(event) {
+                // When a result is returned, update the output element with the transcript
+                document.getElementById("output").innerText = event.results[0][0].transcript;
+            };
+
+            recognition.onerror = function(event) {
+                console.error("Speech recognition error:", event.error);
+            };
+
+            function startRecognition() {
+                document.getElementById("output").innerText = "";
+                recognition.start();
+            }
+
+            function stopRecognition() {
+                recognition.stop();
+            }
+        }
+    </script>
+</body>
+</html>

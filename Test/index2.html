@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Send Medical Treatment Request</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 2em; 
+    }
+    button { 
+      padding: 8px 16px; 
+      font-size: 14px; 
+      cursor: pointer; 
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Send Medical Treatment Request</h1>
+  
+  <!-- Email Button -->
+  <button onclick="sendEmail('baqerali621@gmail.com')">Send Email</button>
+  
+  <!-- WhatsApp Button -->
+  <button onclick="sendWhatsApp()">Send WhatsApp</button>
+
+  <!-- Include the updated EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("MIzbqgptsV5UZkl7f");
+
+    // Function to send the email using EmailJS
+    function sendEmail(recipientEmail) {
+      const templateParams = {
+        user_email: recipientEmail,
+        subject: "Medical Treatment Request",
+        message_text: "I need medical treatment now"
+      };
+
+      // Using service id: service_a89gds9 and template id: template_frlcqao
+      emailjs.send("service_a89gds9", "template_frlcqao", templateParams)
+        .then(function(response) {
+          alert("Email sent successfully!");
+        }, function(error) {
+          console.error("EmailJS error response:", error);
+          alert("Failed to send email. Please try again later.");
+        });
+    }
+
+    // Function to open WhatsApp with a pre-filled message
+    function sendWhatsApp() {
+      // Replace '1234567890' with the actual phone number in international format (omit the '+' sign)
+      const phoneNumber = "7207581690";
+      const message = encodeURIComponent("I need medical treatment now");
+      const url = `https://wa.me/${phoneNumber}?text=${message}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>

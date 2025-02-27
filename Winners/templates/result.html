@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prescription Result</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Prescription Processing Result</h1>
+    <div id="result"></div>
+    <script>
+      const resultData = localStorage.getItem("resultData");
+      if(resultData) {
+        const data = JSON.parse(resultData);
+        document.getElementById("result").innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      } else {
+        document.getElementById("result").innerText = "No data found.";
+      }
+    </script>
+  </div>
+</body>
+</html>

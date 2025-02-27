@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Send All Notifications</title>
+  <!-- Include EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    window.emailjs.init("MIzbqgptsV5UZkl7f");
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header {
+      background-color: #1a56db;
+      padding: 1rem 2rem;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav ul li {
+      color: white;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    nav ul li:hover {
+      color: #93c5fd;
+    }
+    
+    .hero {
+      background: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+      padding: 8rem 2rem 6rem;
+      text-align: center;
+      color: white;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      margin-bottom: -4rem;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .service-item {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    
+    .service-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1rem;
+      padding: 10px;
+      background: #e0e7ff;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    button {
+      background-color: #1a56db;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    button:hover {
+      background-color: #1e40af;
+      transform: translateY(-1px);
+    }
+    
+    button:disabled {
+      background-color: #93c5fd;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    #result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background-color: #f8fafc;
+      min-height: 50px;
+    }
+    
+    footer {
+      background-color: #f1f5f9;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 4rem;
+      color: #64748b;
+    }
+    
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+    
+      .hero {
+        padding: 6rem 1rem 4rem;
+      }
+    
+      .hero h1 {
+        font-size: 2rem;
+      }
+    
+      .container {
+        padding: 0 1rem;
+      }
+    
+      .services {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-content">
+        <a href="#" class="logo">Company</a>
+        <nav>
+          <ul>
+            <li>About</li>
+            <li>Products</li>
+            <li>Services</li>
+            <li>Contacts</li>
+            <li>Login</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="hero">
+      <h1>Welcome to Our Live Support</h1>
+      <p>We provide 24/7 assistance to those who need help.</p>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <h2>Send Help Request</h2>
+        <p>Click the button below to send your request. Our team will respond shortly.</p>
+        
+        <div class="services">
+          <div class="service-item">
+            <div class="service-icon">📞</div>
+            <h3>Emergency Call</h3>
+            <p>Direct phone support</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">✉️</div>
+            <h3>Email Alert</h3>
+            <p>Fast email response</p>
+          </div>
+          <div class="service-item">
+            <div class="service-icon">💬</div>
+            <h3>WhatsApp</h3>
+            <p>Instant messaging</p>
+          </div>
+        </div>
+
+        <button id="sendAllBtn">🆘 Send Emergency Request</button>
+        <div id="result"></div>
+      </div>
+    </div>
+
+    <footer>
+      &copy; 2025 Company. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("sendAllBtn").addEventListener("click", function() {
+      const button = document.getElementById("sendAllBtn");
+      const resultDiv = document.getElementById("result");
+      
+      button.disabled = true;
+      button.textContent = "Sending...";
+      resultDiv.innerText = "Processing your request...";
+  
+      // 1. Send Email using EmailJS from the client side
+      const templateParams = {
+        user_email: 'rrsed456@gmail.com',
+        subject: "Medical Treatment Request",
+        message_text: "I need to get the hospital now"
+      };
+  
+      window.emailjs.send("service_a89gds9", "template_frlcqao", templateParams)
+        .then(function(response) {
+          // 2. Once email is sent, trigger server actions (WhatsApp and Call)
+          fetch("/send_all", { method: "POST" })
+            .then(response => response.json())
+            .then(data => {
+              resultDiv.innerText = "Request sent successfully. Help is on the way.";
+              setTimeout(function() {
+                window.location.href = "/help";
+              }, 2000);
+            })
+            .catch(function(error) {
+              resultDiv.innerText = "Server error: " + error;
+              button.disabled = false;
+              button.textContent = "🆘 Send Emergency Request";
+            });
+        })
+        .catch(function(error) {
+          resultDiv.innerText = "Error sending request. Please try again or call emergency services directly.";
+          button.disabled = false;
+          button.textContent = "🆘 Send Emergency Request";
+        });
+    });
+  </script>
+</body>
+</html>

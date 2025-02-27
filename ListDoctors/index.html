@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doctor Listings</title>
+  
+  <!-- Font Awesome for medical symbol icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    integrity="sha512-acUFfR2T+Wg9Uzjnv6uTp/5hE0rQfw6q4QZn9ix60Q5Pwc+pMjfxxb4HPH8ow8T/VDsH8Jezpr3O6kz41yXkQA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    /* 
+      Keyframes for a slight fade-in-up effect 
+      (cards will fade in and rise a bit).
+    */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Basic resets */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Page background with a soft blue gradient */
+    body {
+      background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* Header styling */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #0d47a1;
+      display: inline-block;
+      margin: 0;
+    }
+    header h1 i {
+      margin-right: 10px;
+      color: #1976d2; /* color for the medical icon */
+    }
+
+    /* Doctor list container: 3 columns in a grid */
+    .doctor-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto; /* center the grid */
+    }
+
+    /* Each doctor card */
+    .doctor-card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      /* 
+        Fade in and slide up effect 
+        plus a small delay based on card order 
+      */
+      opacity: 0; 
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    .doctor-card:nth-child(1) { animation-delay: 0.1s; }
+    .doctor-card:nth-child(2) { animation-delay: 0.2s; }
+    .doctor-card:nth-child(3) { animation-delay: 0.3s; }
+    .doctor-card:nth-child(4) { animation-delay: 0.4s; }
+    .doctor-card:nth-child(5) { animation-delay: 0.5s; }
+    .doctor-card:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Card hover effect: slight lift and shadow */
+    .doctor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Doctor photo */
+    .doctor-photo {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    /* Doctor info section */
+    .doctor-info {
+      padding: 15px;
+      min-height: 200px; /* helps keep cards uniform in height */
+    }
+    .doctor-info h2 {
+      font-size: 1.4rem;
+      color: #0d47a1;
+      margin-bottom: 10px;
+    }
+    .doctor-info p {
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      color: #555;
+      line-height: 1.4em;
+    }
+
+    /* Action buttons container */
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Styling buttons */
+    .action-buttons button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #1976d2;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+    .action-buttons button:hover {
+      background-color: #0d47a1;
+    }
+
+    /* Responsive design: stack to 1 or 2 columns for smaller screens */
+    @media screen and (max-width: 992px) {
+      .doctor-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media screen and (max-width: 600px) {
+      .doctor-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Add a medical symbol next to the heading -->
+    <h1><i class="fas fa-stethoscope"></i> Our Doctors</h1>
+  </header>
+  
+  <main>
+    <!-- Doctor Cards Section -->
+    <div class="doctor-list">
+      <!-- Doctor Card 1 -->
+      <div class="doctor-card">
+        <img src="D1.jpg" alt="Dr. Jane Doe" class="doctor-photo" />
+        <div class="doctor-info">
+          <h2>Dr. Jane Doe</h2>
+          <p>Cardiologist with over 10 years of experience in patient care.</p>
+          <div class="action-buttons">
+            <button onclick="sendEmail('Jane Doe','janedoe@clinic.com')">Send Email</button>
+            <button onclick="bookAppointment('Jane Doe')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+      <!-- Doctor Card 2 -->
+      <div class="doctor-card">
+        <img src="D2.jpg" alt="Dr. John Smith" class="doctor-photo" />
+        <div class="doctor-info">
+          <h2>Dr. John Smith</h2>
+          <p>Neurologist specializing in innovative treatments for brain disorders.</p>
+          <div class="action-buttons">
+            <button onclick="sendEmail('John Smith','johnsmith@clinic.com')">Send Email</button>
+            <button onclick="bookAppointment('John Smith')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+      <!-- Doctor Card 3 -->
+      <div class="doctor-card">
+        <img src="D9.jpg" alt="Dr. Emily Clark" class="doctor-photo" />
+        <div class="doctor-info">
+          <h2>Dr. Emily Clark</h2>
+          <p>Pediatrician committed to caring for children’s health and wellbeing.</p>
+          <div class="action-buttons">
+            <button onclick="sendEmail('Emily Clark','emilyclark@clinic.com')">Send Email</button>
+            <button onclick="bookAppointment('Emily Clark')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+      <!-- Doctor Card 4 -->
+      <div class="doctor-card">
+        <img src="D4.jpg" alt="Dr. Michael Lee" class="doctor-photo" />
+        <div class="doctor-info">
+          <h2>Dr. Michael Lee</h2>
+          <p>Orthopedic surgeon with expertise in minimally invasive procedures.</p>
+          <div class="action-buttons">
+            <button onclick="sendEmail('Michael Lee','michaellee@clinic.com')">Send Email</button>
+            <button onclick="bookAppointment('Michael Lee')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+      <!-- Doctor Card 5 -->
+      <div class="doctor-card">
+        <img src="D6.jpeg" alt="Dr. Sarah Patel" class="doctor-photo" />
+        <div class="doctor-info">
+          <h2>Dr. Sarah Patel</h2>
+          <p>Dermatologist focused on skin health and cosmetic procedures.</p>
+          <div class="action-buttons">
+            <button onclick="sendEmail('Sarah Patel','sarahpatel@clinic.com')">Send Email</button>
+            <button onclick="bookAppointment('Sarah Patel')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+      <!-- Doctor Card 6 -->
+      <div class="doctor-card">
+        <img src="D5.jpg" alt="Dr. David Kim" class="doctor-photo" />
+        <div class="doctor-info">
+          <h2>Dr. David Kim</h2>
+          <p>General practitioner with a friendly approach to family health.</p>
+          <div class="action-buttons">
+            <button onclick="sendEmail('David Kim','davidkim@clinic.com')">Send Email</button>
+            <button onclick="bookAppointment('David Kim')">Book Appointment</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Send Email: Opens Gmail with a pre-filled subject/body (no alerts/prompt).
+    function sendEmail(doctorName, emailAddress) {
+      if (!emailAddress) return; // No email available
+
+      const subject = `Appointment request for Dr. ${doctorName}`;
+      const body = `Hello Dr. ${doctorName},%0A%0AI'd like to request an appointment.%0AThank you!`;
+      
+      // Link for Gmail compose with default subject/body
+      const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(emailAddress)}&su=${encodeURIComponent(subject)}&body=${body}`;
+      window.open(mailtoLink, "_blank");
+    }
+
+    // Book Appointment: Opens a placeholder booking link in a new tab.
+    function bookAppointment(doctorName) {
+      // Example booking URL with query parameter
+      const bookingUrl = `https://example.com/booking?doctor=${encodeURIComponent(doctorName)}`;
+      window.open(bookingUrl, "_blank");
+    }
+  </script>
+</body>
+</html>

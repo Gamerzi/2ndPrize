@@ -1,0 +1,7 @@
+Flask
+flask-cors
+pywhatkit
+python-dotenv
+pydantic
+requests
+python-docx
